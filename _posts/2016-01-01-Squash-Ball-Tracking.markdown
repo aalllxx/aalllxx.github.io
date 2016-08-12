@@ -1,4 +1,15 @@
-#Ball Tracking for Squash
+---
+layout: post
+title:  "Ball Tracking for Squash"
+date:   2016-03-31 19:45:31 +0530
+categories: "projects"
+author: "Alex Feldman"
+---
+A MATLAB Computer Vision program
+
+
+Ball Tracking for Squash
+========================
 A MATLAB Computer Vision program - [GitHub repository](https://github.com/aalllxx/Squash-Project)
 
 
