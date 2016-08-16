@@ -14,7 +14,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="canonical" href="http://felday.info/projects/2016/03/31/Squash-Ball-Tracking.html">
+  <link rel="canonical" href="http://felday.info/projects/2016/08/16/Squash-Ball-Tracking.html">
   <link rel="alternate" type="application/rss+xml" title="alex feldman" href="http://felday.info/feed.xml">
 </head>
 
@@ -69,8 +69,8 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline"><a class="post-title-link"  href="/projects/2016/03/31/Squash-Ball-Tracking.html">Ball Tracking for Squash</a></h1>
-  <center>  <p class="post-meta"><time datetime="2016-03-31T10:15:31-04:00" itemprop="datePublished">Mar 31, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline"><a class="post-title-link"  href="/projects/2016/08/16/Squash-Ball-Tracking.html">Ball Tracking for Squash</a></h1>
+  <center>  <p class="post-meta"><time datetime="2016-08-16T16:00:00-04:00" itemprop="datePublished">Aug 16, 2016</time></p>
     
    </center>
   </header>
@@ -111,7 +111,7 @@
 
 <p>I had also been messing around extensively in MATLAB. This was my first time working in MATLAB and I was impressed with the documentation available on all built-in functions. My first real taste of computer vision came from reading the help articles on functions with input arguments I couldn’t understand. I remember struggling with the <a href="http://www.mathworks.com/help/vision/examples/using-kalman-filter-for-object-tracking.html">Kalman Filter</a> for a day or two and slowly understanding the difference between detection and tracking.</p>
 
-<p>To keep at bay my growing anxiety that my project may fail, I binge-watched a graduate level <a href="https://www.udacity.com/course/introduction-to-computer-vision--ud810">Udacity course on computer vision</a> with Professor Aaron Bobick formerly of Georgia Tech. His course is excellent. I learned about <a href="https://classroom.udacity.com/courses/ud810/lessons/3515968538/concepts/34851485780923#">Fourier Transforms</a>, and <a href="https://classroom.udacity.com/courses/ud810/lessons/2965048666/concepts/29469186670923#">stereo geometry</a>, and a million other fascinating topics, but at the end of the day, none of it was really applicable to the basic tracking problem I was looking to solve.</p>
+<p>To keep at bay my growing anxiety that my project may fail, I binge-watched a  <a href="https://www.udacity.com/course/introduction-to-computer-vision--ud810">Udacity course on computer vision</a> with Professor Aaron Bobick formerly of Georgia Tech. His course is excellent. I learned about <a href="https://classroom.udacity.com/courses/ud810/lessons/3515968538/concepts/34851485780923#">Fourier Transforms</a>, and <a href="https://classroom.udacity.com/courses/ud810/lessons/2965048666/concepts/29469186670923#">stereo geometry</a>, and a million other fascinating topics, but at the end of the day, none of it was really applicable to the basic tracking problem I was looking to solve.</p>
 
 <p>In my hunt for scholarly help I found <strong><a href="http://www.springer.com/us/book/9783319093956">Computer Vision in Sports</a></strong> (Springer International, 2014) which, after a week in interlibrary transit from the University of Wisconsin, changed my whole direction for the project.</p>
 
@@ -137,7 +137,7 @@ That’s about all I the introduction I have to offer. I’ll note that I pushed
 <h2 id="blob-it-up---ball-detection"><code class="highlighter-rouge">Blob-It-Up</code> - Ball detection</h2>
 <p>What I enjoyed most about this project and CV in general is the way they make me think about breaking down everyday tasks into clear sets of instructions. The way I thought about detecting the ball in each frame, one of the first tasks in the project, is a clear example of this.</p>
 
-<p>The first piece of code I wrote for this project was designed to use a built in MATLAB <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework">Viola Jones</a> object detector. I would detect the ball in each frame by taking each frame and looking for a small, black circle - the ball. This, of course, didn’t work at all. Small black circles are about as hard to detect as objects come. The best explanations I found were for self-driving car programs - moving cameras looking for consistent and unique stationary objects. It took me a few failures to implement one of those algorithms to realize how my task was unique.</p>
+<p>The first piece of code I wrote for this project was designed to use a built in MATLAB <a href="https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework">Viola Jones</a> object detector. I would detect the ball in each frame by taking each frame and looking for a small, black circle - the ball. This, of course, didn’t work at all. Small black circles are about as hard to detect as objects come. The best MATLAB documentation I found was for self-driving car programs - moving cameras looking for consistent and unique stationary objects. It took me a few failures to implement one of those algorithms to realize how my task was unique.</p>
 
 <p><img src="http://lewisdartnell.com/motion/motion_images/Anim_1.gif" alt="Moving Box" /></p>
 
@@ -147,7 +147,7 @@ That’s about all I the introduction I have to offer. I’ll note that I pushed
 
 <p>My first example of slow code is <code class="highlighter-rouge">toSmoothedDiff</code>, the way I created a video of the difference between frames. I spent a long time tuning this code to work with my test clips. I used a GoPro wide angle shot at 720p and 120fps and attached the camera to the glass at the back of the court. With a different camera in a different position all of these tunings would need to be adjusted. This <strong>is not</strong> a scaleable program. <code class="highlighter-rouge">toSmoothedDiff</code> could certainly be optimized and made easier to modify, but I choose to keep it well tuned and left it as is. The only bit of efficiency I introduced at this stage was working with grayscale and then logical black and white images. I’ll discuss using color at the end of the post, but long story short, it’s not very useful.</p>
 
-<p>The hardest part about generating clean detections is that there is too much noise, especially around the players. Because of the camera placement, the ball can be close to camera and large, or speeding into the front wall and only a few pixels wide. Just for an idea of the scale, my blobs were between 100px and 750px. Limbs and racquets often split into odd shapes in the difference video and even when I sampled at 120fps the ball would stretch into two disconnected blobs when hit quickly. Even with my finely tuned difference video it was still not possible to reliably detect the ball in each frame.</p>
+<p>The hardest part about generating clean detections is that there is too much noise, especially around the players. Because of the camera placement, the ball can be close to camera and large, or speeding into the front wall and only a few pixels wide. Just for an idea of the scale, my blobs were between 100px<sup>2</sup> and 750px<sup>2</sup>. Limbs and racquets often split into odd shapes in the difference video and even when I sampled at 120fps the ball would stretch into two disconnected blobs when hit quickly. Even with my finely tuned difference video it was still not possible to reliably detect the ball in each frame.</p>
 
 <p>My solution to this problem is horribly inefficient and it pains me to think about. I took a second difference video with a four frame difference and used that help remove slower moving blobs. The result is a very clean image which allowed me to easily detect the ball.</p>
 
@@ -163,7 +163,7 @@ That’s about all I the introduction I have to offer. I’ll note that I pushed
 
 <p><em>Result of <code class="highlighter-rouge">noPeople</code> with above as inputs</em></p>
 
-<p>Look at how much bigger the four frame difference video is, especially around the players. The biggest problem I had with detection was that racquets or limbs would often separate from the large <em>person</em> blob and get detected as a possible ball. By subtracting at a further difference, I was able to more clearly figure out where the whole player was and exclude that when searching for the ball.</p>
+<p>Look at how much brighter the four frame difference video is, especially around the players. The biggest problem I had with detection was that racquets or limbs would often separate from the large <em>person</em> blob and get detected as a possible ball. By subtracting at a further difference, I was able to more clearly figure out where the whole player was and exclude that when searching for the ball.</p>
 
 <p><code class="highlighter-rouge">noPeople</code> was very hard to optimize properly, and <code class="highlighter-rouge">blobItUp</code> only uses it in noisy frames with more than 2 detections, but in the noisiest sections it works wonders at cleaning up a frame. At the end of the day, though, I hope that in future versions I’ll do away with the two difference videos.</p>
 
@@ -171,7 +171,7 @@ That’s about all I the introduction I have to offer. I’ll note that I pushed
 
 <p>My tuning process was simple trial and error. I would change the size of my morphological dilation brush and minimum and maximum blob size. If no detections were found in a frame where there should be, I would redo the dilation with a larger brush. If too many detections were found, I would use ‘noPeople’ and the second difference video to figure out which detections could be ignored.</p>
 
-<p>At that point that my detections were reliable I was especially interested in finding where on the front wall the ball made contact. A simple solution to this problem is possible with my two dimensional setup. When the ball changes direction and speed in a pixel on top of the front wall I could locate that point in the 2D space of the front wall. There are many problems with this setup and to do it right, I would need at least 2 cameras. In any case, without a setup to track the ball, only to detect it, my task was not feasible.</p>
+<p>At that point my detections were reliable and I was ready to solve my original problem - finding where on the front wall the ball made contact. A simple solution to this problem is possible with my two dimensional setup. When the ball changes direction and speed in a pixel on top of the front wall I could locate that point in the 2D space of the front wall. There are many problems with this setup and to do it right, I would need at least 2 cameras. In any case, without a setup to track the ball, only to detect it, my task was not feasible.</p>
 
 <p><img src="http://i.imgur.com/dCz5Dps.png" alt="Detections" />
 <em>All detections from <code class="highlighter-rouge">blobItUp</code></em></p>
@@ -185,19 +185,22 @@ That’s about all I the introduction I have to offer. I’ll note that I pushed
 
 <p>**Candidate Level ** 
 <code class="highlighter-rouge">generatePoints</code>, <code class="highlighter-rouge">generateTracklets</code>, <code class="highlighter-rouge">improveTracklets</code>
-This is the first abstraction away from detections. A game becomes a series of functions.
-I generate tracklets from detections and check a circular window around each detection for other detections. If in the previous and following frames there are detections within a radius, a tracklet is formed. The three points become supports, and a second order function is fitted.
-Tracklets are iteratively improved. I predict where the next detection should be based on the model in each tracklet and if detections lie within a threshold of that point, it is added to the tracklet and the fitted function is updated. This iteratively repeats until the overall fit stops improving, or no new supports are found.</p>
+This is the first abstraction away from detections. A game becomes a series of functions.</p>
+
+<p>I generate tracklets from detections and check a circular window around each detection for other detections. If in the previous and following frames there are detections within a radius, a tracklet is formed. The three points become supports, and a second order function is fitted.</p>
+
+<p>Tracklets are iteratively improved. I predict where the next detection should be based on the model in each tracklet and if detections lie within a threshold of that point, it is added to the tracklet and the fitted function is updated. This iteratively repeats until the overall fit stops improving, or no new supports are found.</p>
 
 <p><strong>Tracklet Level</strong> 
 <code class="highlighter-rouge">connectTracklets</code>
-In this process shortest paths are found between each tracklet generated above. This abstracts away from individual functions and pieces together whole rallies.
-I did this in two ways. First, if two models were similar I assumed that they fell along the same curve. This connects curves which may have been too far away for the original threshold. It isn’t a pure implementation of Tracklet Level Association, but it greatly improved my results.
-If the models were not similar I extended temporally adjacent curves to their intersection and drew it out. Due to occlusion or racquet noise, detections near players are typically worse. Because curves typically end around players (when they hit the ball), extending curves this way is especially important. I drew those sections in yellow in the original output image.</p>
+In this process shortest paths are found between each tracklet generated above. This abstracts away from individual functions and pieces together whole rallies.</p>
+
+<p>If the models were not similar I extended temporally adjacent curves to their intersection and drew it out. Due to occlusion or racquet noise, detections near players are typically worse. Because curves typically end around players (when they hit the ball), extending curves this way is especially important. I drew those sections in yellow in the original output image.</p>
 
 <p><strong>Path Level</strong>
-Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies. 
-I didn’t implement Path Level Association but I certainly intend to in the future. I hope to write more about it then.</p>
+Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies.</p>
+
+<p>I didn’t implement Path Level Association but I certainly intend to in the future. I hope to write more about it then.</p>
 
 <p><strong>Endpoint/Midpoint Curves vs MATLAB fitObjects</strong>
 <em>CV in Sports</em> was my guide for implementing Layered Data Association and it steered me in the right direction time and time again. The one decision where I really took a different route than the book is how I created my models.</p>
@@ -232,13 +235,28 @@ Blue curves show tracklets which had more than 4 supports. <code class="highligh
 Yellow curves are extensions of a tracklet’s model to the intersection with the neighboring tracklet. This is especially important because the racquet head will always occlude the ball when contact is made. 
 When the intersection is outside both curves (like in the long top right example) both curves are drawn. When the intersection is within one curve (bottom left) only the extension from one curve is drawn. In this case the curves don’t line up because the ball traveled across the player’s body and was occluded from view.</p>
 
-<p>I was surprised by how true the ball travels to 2nd order (constant acceleration) polynomial curves. In that large top-right example my blue curves end 275px and 75px from the predicted intersection and the error, which I measured by hand from the actual frame of contact, was 20px. For such a long distance I am happy with that margin of error. With better tuning to my <code class="highlighter-rouge">scoopItUp</code> code I’m sure that error would come down.</p>
+<p>I was surprised by how true the ball travels to 2nd order (constant acceleration) polynomial curves. In the top-right section of the output there are long yellow extensions. My blue curves end 275px and 75px from the predicted intersection and the error, which I measured by hand from the actual frame of contact, was 20px. For such a long distance I am happy with that margin of error. With better tuning to my <code class="highlighter-rouge">scoopItUp</code> code I’m sure that error would come down.</p>
 
-<p><em>*NOT DONE - DON’T PUBLISH THIS SECTION **
-**It’s far from perfect **
-*I’m still fixing some bugs as I’m writing this blog post so it’s hard to write this now.</em>
-Show other clip and result.
-This is a strong proof of concept.</p>
+<p>**It’s far from perfect **
+My program works fairly well, but by taking a close look at a second clip I’ll can show some areas that desperately need improvement.</p>
+
+<p><img src="http://i.giphy.com/3o6Zt2HBg6ECJP0dvW.gif" alt="Second Clip Highlighted" /></p>
+
+<p><em>A second clip I worked with. Highlights added by hand before posting to blog.</em></p>
+
+<p><img src="http://i.imgur.com/xOYnt7m.png" alt="Second Clip Output" /></p>
+
+<p><em>Output of second clip</em></p>
+
+<p>The first thing you’ll notice is my error on the forehand volley drop. I need to be quicker to the ball and put it away.</p>
+
+<p>After getting over that, look at how the output is segmented in strange places. I don’t really know why my blue tracklets are broken up in those places. That could be a small issue with how I tuned <code class="highlighter-rouge">improveTracklets</code> or it could indicate some larger bug. In any case, <code class="highlighter-rouge">connectTracklets</code> is sometimes able to compensate for this problem and draw yellow lines between the disconnected segments.</p>
+
+<p>The next issue has more to do with how I created this output. <code class="highlighter-rouge">improveTracklets</code> is meant to iteratively run the <code class="highlighter-rouge">scoopUp</code> method, but I didn’t fully implement the loop. In theory, tracklets should be improved until the next iteration doesn’t find any new supports or the model starts to fit the supports worse than the last iteration. I would do this by checking <code class="highlighter-rouge">numSupports</code> and <code class="highlighter-rouge">meanDistance</code> after each iteration, but the real trouble comes in determining what threshold to use at each iteration.</p>
+
+<p>When I made this output I ran two iterations of <code class="highlighter-rouge">scoopUp</code>, first with a distance threshold (how far a point can be from a prediction) of 5px and then of 3px. I tried it with smaller and larger thresholds and both produced worse results. I know how to implement this aspect, but ran out of time in the summer. For now, this all needs to be done manually. It also means that <code class="highlighter-rouge">doItAll</code>, my function which runs all the pieces in order, will not produce results as solid as doing it by hand and tweaking the threshold.</p>
+
+<p>At the end of the day, this is a strong proof-of-concept, but needs lots of work to do anything useful.</p>
 
 <h2 id="other-thoughts">Other thoughts</h2>
 
@@ -275,7 +293,7 @@ I’ve done most of my serious programming in Java so once I had a clear idea of
 
 <p>I literally dream of stereo tracking. I think about how adding a second camera to my setup would solve my biggest problems and pave the way to new and useful functionality. All of the big innovations which I want to see for squash tracking need 3D.</p>
 
-<p>Drawing the path of a squash ball is nice, but is hardly useful in any practical way. By introducing stereo footage, video I could make a 3D hull rendering of the squash court. I would know where on each wall the ball bounced and the speed of the ball at each frame. Adding a second camera would also help with the regular occlusion that a single camera has trouble with.</p>
+<p>Drawing the path of a squash ball is nice, but is hardly useful in any practical way. By introducing stereo footage, video I could make a 3D hull rendering of the squash court. I would know where on each wall the ball bounced and the speed of the ball at each frame. Adding a second camera would also help with the regular occlusions that a single camera has trouble with.</p>
 
 <p><strong>Use color (or maybe not)</strong></p>
 
@@ -285,7 +303,7 @@ I’ve done most of my serious programming in Java so once I had a clear idea of
 
 <p>This was my first time using a GoPro and I was shocked with the ease of use and quality of video produced. I clipped a tiny box to the back wall and it recorded in HD at 120fps. In previous setups I had been hanging tripods off of railings and attaching cameras with large lenses to them. Even then, the field of view and frame rate didn’t compare with the GoPro’s.</p>
 
-<p>The GoPro’s wide angle shot did cause problems for my ball detection and curve fitting. In my main test clip most of the action took place in the front of the court and when I tested rallies that were played further back they were much less smooth. This is partially because the ball changes size dramatically between the front and back of the court. Changes in position are also more extreme when closer to the camera. Using a camera position similar to broadcast would help my program perform.</p>
+<p>The GoPro’s wide angle shot did cause problems for my ball detection and curve fitting. In my main test clip most of the action took place in the front of the court and when I tested rallies that were played further back they were much less smooth. This is partially because the ball changes size dramatically between the front and back of the court. Changes in position are also more extreme when closer to the camera and that causes the ball path to deviate from perfect 2nd order polynomials. Using a camera position similar to broadcast would help my program perform.</p>
 
 <p><img src="http://i.giphy.com/l2Sqi70EikLX7kt1u.gif" alt="zoomed camera" /></p>
 

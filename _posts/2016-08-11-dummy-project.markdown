@@ -2,7 +2,7 @@
 layout: post
 title:  "A dummy project post"
 date:   2016-03-30 19:45:31 +0530
-categories: ["dummy", "projects"]
+categories: "projects"
 author: "Alex Feldman"
 ---
 This is an unbeleivable thing that I did.
