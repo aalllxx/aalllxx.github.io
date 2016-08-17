@@ -1,11 +1,3 @@
----
-layout: page
-title: My Inspiration
-permalink: /inspiration/
-tagline: "Videos that make me think in new ways"
-category: "inspiration"
----
-
 MIT Interactive Dynamic Video
 ---------------------
 This project uses video of near-stationary objects and uses the small vibrations in the objects to learn about how they move. It's very cool.
