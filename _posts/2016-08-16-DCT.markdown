@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Discrete Cosine Transform"
+categories: "inspiration"
+---
+
+This was the first time I thought about images as anything other than pixels.
+
+[![Discrete Cosine T Vid](http://img.youtube.com/vi/Q2aEzeMDHMA/0.jpg)](https://www.youtube.com/watch?v=Q2aEzeMDHMA)
