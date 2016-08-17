@@ -129,8 +129,9 @@
 
 <p><em>Source: Computer Vision in Sports</em>, p. 35</p>
 
-<p><strong>On to the code</strong>
-That’s about all I the introduction I have to offer. I’ll note that I pushed aside most of my worries about time efficiency. My goal was to create a program which could produce the results I wanted without any other caveats. I didn’t care if it worked quickly or was especially user friendly, so long as it worked well. I’ll point out a few instances where I clearly chose very slow algorithms and something quicker might have been nearly as good.</p>
+<p><strong>On to the code</strong></p>
+
+<p>That’s about all I the introduction I have to offer. I’ll note that I pushed aside most of my worries about time efficiency. My goal was to create a program which could produce the results I wanted without any other caveats. I didn’t care if it worked quickly or was especially user friendly, so long as it worked well. I’ll point out a few instances where I clearly chose very slow algorithms and something quicker might have been nearly as good.</p>
 
 <p>Finally, if you want a quick introduction to squash, <a href="https://www.youtube.com/watch?v=3gQsAKZ71tU">this video</a> does a mediocre job of explaining the rules, but has good illustrations. Onward!</p>
 
@@ -183,27 +184,33 @@ That’s about all I the introduction I have to offer. I’ll note that I pushed
 
 <p>Layered Data Association(as described in <em>CV in Sports</em>) begins with a clip of a whole game of tennis with detections in each frame and outputs all of the paths from all of the rallies in the game. Each of the three levels works at a different level of abstraction as follows:</p>
 
-<p>**Candidate Level ** 
-<code class="highlighter-rouge">generatePoints</code>, <code class="highlighter-rouge">generateTracklets</code>, <code class="highlighter-rouge">improveTracklets</code>
-This is the first abstraction away from detections. A game becomes a series of functions.</p>
+<p><strong>Candidate Level</strong></p>
+
+<p><code class="highlighter-rouge">generatePoints</code>, <code class="highlighter-rouge">generateTracklets</code>, <code class="highlighter-rouge">improveTracklets</code></p>
+
+<p>This is the first abstraction away from detections. A game becomes a series of functions.</p>
 
 <p>I generate tracklets from detections and check a circular window around each detection for other detections. If in the previous and following frames there are detections within a radius, a tracklet is formed. The three points become supports, and a second order function is fitted.</p>
 
 <p>Tracklets are iteratively improved. I predict where the next detection should be based on the model in each tracklet and if detections lie within a threshold of that point, it is added to the tracklet and the fitted function is updated. This iteratively repeats until the overall fit stops improving, or no new supports are found.</p>
 
-<p><strong>Tracklet Level</strong> 
-<code class="highlighter-rouge">connectTracklets</code>
-In this process shortest paths are found between each tracklet generated above. This abstracts away from individual functions and pieces together whole rallies.</p>
+<p><strong>Tracklet Level</strong></p>
+
+<p><code class="highlighter-rouge">connectTracklets</code></p>
+
+<p>In this process shortest paths are found between each tracklet generated above. This abstracts away from individual functions and pieces together whole rallies.</p>
 
 <p>If the models were not similar I extended temporally adjacent curves to their intersection and drew it out. Due to occlusion or racquet noise, detections near players are typically worse. Because curves typically end around players (when they hit the ball), extending curves this way is especially important. I drew those sections in yellow in the original output image.</p>
 
-<p><strong>Path Level</strong>
-Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies.</p>
+<p><strong>Path Level</strong></p>
+
+<p>Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies.</p>
 
 <p>I didn’t implement Path Level Association but I certainly intend to in the future. I hope to write more about it then.</p>
 
-<p><strong>Endpoint/Midpoint Curves vs MATLAB fitObjects</strong>
-<em>CV in Sports</em> was my guide for implementing Layered Data Association and it steered me in the right direction time and time again. The one decision where I really took a different route than the book is how I created my models.</p>
+<p><strong>Endpoint/Midpoint Curves vs MATLAB fitObjects</strong></p>
+
+<p><em>CV in Sports</em> was my guide for implementing Layered Data Association and it steered me in the right direction time and time again. The one decision where I really took a different route than the book is how I created my models.</p>
 
 <p>The book writes out the basics physics equations deriving acceleration, velocity, and position that I learned in high school.</p>
 
@@ -260,8 +267,9 @@ My program works fairly well, but by taking a close look at a second clip I’ll
 
 <h2 id="other-thoughts">Other thoughts</h2>
 
-<p><strong>A rant about OOP in MATLAB</strong>
-I’ve done most of my serious programming in Java so once I had a clear idea of what I needed, I transitioned straight into an Object-Oriented design. MATLAB seriously disappoints in its OOP practicality, and if I was doing this again I would certainly keep everything procedural. In essence I did make all my methods procedural by passing index values to my class methods and returning my modified elements from those methods. Passing by reference is not simple in MATLAB.</p>
+<p><strong>A rant about OOP in MATLAB</strong></p>
+
+<p>I’ve done most of my serious programming in Java so once I had a clear idea of what I needed, I transitioned straight into an Object-Oriented design. MATLAB seriously disappoints in its OOP practicality, and if I was doing this again I would certainly keep everything procedural. In essence I did make all my methods procedural by passing index values to my class methods and returning my modified elements from those methods. Passing by reference is not simple in MATLAB.</p>
 
 <p>The only real difference between my implementation and a purely procedural one is that MATLAB displays the values of 1 dimensional structs when inspecting variables, but does not display class attributes. Passing values was a small nuisance, but the poor debugger design frustrated me to no end.</p>
 

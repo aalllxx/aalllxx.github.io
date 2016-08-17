@@ -63,6 +63,7 @@ The whole book is astounding, but as soon as I saw this image I knew what I was 
 *Source: Computer Vision in Sports*, p. 35
 
 **On to the code**
+
 That's about all I the introduction I have to offer. I'll note that I pushed aside most of my worries about time efficiency. My goal was to create a program which could produce the results I wanted without any other caveats. I didn’t care if it worked quickly or was especially user friendly, so long as it worked well. I'll point out a few instances where I clearly chose very slow algorithms and something quicker might have been nearly as good.
 
 Finally, if you want a quick introduction to squash, [this video](https://www.youtube.com/watch?v=3gQsAKZ71tU) does a mediocre job of explaining the rules, but has good illustrations. Onward!
@@ -118,26 +119,32 @@ The 2D ball tracking chapter of *CV in Sports* described a three part process ca
 
 Layered Data Association(as described in *CV in Sports*) begins with a clip of a whole game of tennis with detections in each frame and outputs all of the paths from all of the rallies in the game. Each of the three levels works at a different level of abstraction as follows:
 
-**Candidate Level ** 
+**Candidate Level** 
+
 `generatePoints`, `generateTracklets`, `improveTracklets`
+
 This is the first abstraction away from detections. A game becomes a series of functions.
 
 I generate tracklets from detections and check a circular window around each detection for other detections. If in the previous and following frames there are detections within a radius, a tracklet is formed. The three points become supports, and a second order function is fitted.
 
 Tracklets are iteratively improved. I predict where the next detection should be based on the model in each tracklet and if detections lie within a threshold of that point, it is added to the tracklet and the fitted function is updated. This iteratively repeats until the overall fit stops improving, or no new supports are found.
 
-**Tracklet Level** 
+**Tracklet Level**
+
 `connectTracklets`
+
 In this process shortest paths are found between each tracklet generated above. This abstracts away from individual functions and pieces together whole rallies.
 
 If the models were not similar I extended temporally adjacent curves to their intersection and drew it out. Due to occlusion or racquet noise, detections near players are typically worse. Because curves typically end around players (when they hit the ball), extending curves this way is especially important. I drew those sections in yellow in the original output image.
 
 **Path Level**
+
 Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies. 
 
 I didn't implement Path Level Association but I certainly intend to in the future. I hope to write more about it then.
 
 **Endpoint/Midpoint Curves vs MATLAB fitObjects**
+
 *CV in Sports* was my guide for implementing Layered Data Association and it steered me in the right direction time and time again. The one decision where I really took a different route than the book is how I created my models. 
 
 The book writes out the basics physics equations deriving acceleration, velocity, and position that I learned in high school.
@@ -198,6 +205,7 @@ Other thoughts
 --------------
 
 **A rant about OOP in MATLAB**
+
 I've done most of my serious programming in Java so once I had a clear idea of what I needed, I transitioned straight into an Object-Oriented design. MATLAB seriously disappoints in its OOP practicality, and if I was doing this again I would certainly keep everything procedural. In essence I did make all my methods procedural by passing index values to my class methods and returning my modified elements from those methods. Passing by reference is not simple in MATLAB.
 
 The only real difference between my implementation and a purely procedural one is that MATLAB displays the values of 1 dimensional structs when inspecting variables, but does not display class attributes. Passing values was a small nuisance, but the poor debugger design frustrated me to no end. 
