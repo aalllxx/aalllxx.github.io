@@ -5,6 +5,4 @@ permalink: /resume/
 tagline: "I'm impressive - please hire"
 ---
 
-I did this.
-
-I did this.
+{% include resume.pdf  %}
