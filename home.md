@@ -1,9 +1,13 @@
 ---
 layout: post
-title:  "Ball Tracking for Squash"
+title: Featured Post
+post-title: "Home"
 date:   2016-08-16 16:00:00 -0400
-categories: "projects"
 ---
+
+
+Ball Tracking in Squash
+=======================
 
 A MATLAB Computer Vision program
 

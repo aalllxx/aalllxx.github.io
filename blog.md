@@ -1,8 +1,8 @@
 ---
 layout: archive
-title: My Inspiration
-permalink: /inspiration/
+title: Blog
+permalink: /blog/
 tagline: "Videos that make me think in new ways"
-category: "inspiration"
+category: "blog"
 ---
 

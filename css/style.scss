@@ -12,7 +12,7 @@ $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
 
-$spacing-unit:     15px;
+$spacing-unit:     30px;
 
 $text-color:       #111;
 $background-color: #fdfdfd;
@@ -122,10 +122,12 @@ figcaption {
  */
 ul, ol {
     margin-left: $spacing-unit;
+    font-size: 1.5rem;
 }
 
 li {
     > ul,
+
     > ol {
          margin-bottom: 0;
     }
@@ -476,16 +478,17 @@ pre {
  */
 .site-footer {
   border-top: 1px solid $grey-color-light;
-  padding: $spacing-unit 0;
+  padding: $spacing-unit/2 0;
 }
 .footer-heading {
-  font-size: 18px;
-  margin-bottom: $spacing-unit / 2;
+  font-size: 16px;
+  margin-bottom: $spacing-unit / 4;
 }
 .contact-list,
 .social-media-list {
   list-style: none;
   margin-left: 0;
+  font-size: 16px;
 }
 .small-site-title {
   font-family: "PT Sans";
@@ -493,13 +496,14 @@ pre {
 .footer-col-wrapper {
   font-size: 15px;
   color: $grey-color;
-  margin-left: -$spacing-unit / 2;
+  margin-left: -$spacing-unit / 4;
   @extend %clearfix;
 }
 .footer-content {
   font-family: "Josefin Sans";
   font-weight: 300;
   letter-spacing: 1px;
+  font-size: 16px;
 }
 .footer-col {
   float: left;

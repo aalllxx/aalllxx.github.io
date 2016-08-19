@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Handheld CNC Router"
-categories: "inspiration"
+categories: "blog"
 ---
 
 [Shaper Tools](http://www.shapertools.com/) has a handheld CNC router in the works. What I love most in this video is the contrast in size between the old mill and the new handheld tool.

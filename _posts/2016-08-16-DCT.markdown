@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Discrete Cosine Transform"
-categories: "inspiration"
+categories: "blog"
 ---
 
 This was the first time I thought about images as anything other than pixels.

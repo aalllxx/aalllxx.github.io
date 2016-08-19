@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "MIT Interactive Dynamic Video"
-categories: "inspiration"
+categories: "blog"
 ---
 
 This project uses video of almost still objects and examines the small vibrations in the objects to learn about how they move. It's very cool.

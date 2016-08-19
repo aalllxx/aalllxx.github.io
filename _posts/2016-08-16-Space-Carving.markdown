@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Space Carving"
-categories: "inspiration"
+categories: "blog"
 ---
 
 Thinking about Space Carving got me thinking about 3D modeling in a different way than I had before. It gave me a good model to think about how 3D works.

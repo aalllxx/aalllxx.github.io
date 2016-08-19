@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Reinforced Dirt"
-categories: "inspiration"
+categories: "blog"
 ---
 
 I have been on a civil engineering kick recently. This got me thinking about the infrastructure I see every day.

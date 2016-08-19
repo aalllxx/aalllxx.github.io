@@ -31,30 +31,14 @@
 </div>
 <div class="wrapper">
   <div class="trigger site-navigation">
-    <a class="page-link" href="http://felday.info">HOME</a><span class="exclamationMark">/</span>
 
-    
-    
+    <a class="page-link" href="http://felday.info">Home</a><span class="exclamationMark">/</span>
 
-    <a class="page-link" href="/about-me/">About me</a><span class="exclamationMark">/</span>
-    
-    
-    
-    
-    
-    
-    
+    <a class="page-link" href="http://felday.info/about-me/">About Me</a><span class="exclamationMark">/</span>
 
-    <a class="page-link" href="/inspiration/">My Inspiration</a><span class="exclamationMark">/</span>
-    
-    
-    
+    <a class="page-link" href="http://felday.info/projects/">Projects</a><span class="exclamationMark">/</span>
 
-    <a class="page-link" href="/projects/">Projects</a><span class="exclamationMark">/</span>
-    
-    
-    
-    
+    <a class="page-link" href="http://felday.info/blog/">Blog</a><span class="exclamationMark">/</span>
 
     <a class="page-link" href="/files/resume.pdf">Résumé</a><span class="exclamationMark">/</span>
 
@@ -67,7 +51,7 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline"><a class="post-title-link"  href="/projects/2016/08/16/Squash-Ball-Tracking.html">Ball Tracking for Squash</a></h1>
+    <h1 class="post-title" itemprop="name headline"><a class="post-title-link"  href="/projects/2016/08/16/Squash-Ball-Tracking.html"></a></h1>
   <center>  <p class="post-meta"><time datetime="2016-08-16T16:00:00-04:00" itemprop="datePublished">Aug 16, 2016</time></p>
     
    </center>
@@ -115,11 +99,14 @@
 
 <p><strong>Computer Vision in Sports</strong></p>
 
-<p><em>CV in Sports</em> is a collection of scholarly papers published by a number of researchers on advances in CV as they apply to various sports. After drooling over the introductory chapter I had a handle on the four areas of focus the book explores.
-1. Ball tracking
-2. Player tracking
-3. Determining what sport is being played
-4. What is happening within a game</p>
+<p><em>CV in Sports</em> is a collection of scholarly papers published by a number of researchers on advances in CV as they apply to various sports. After drooling over the introductory chapter I had a handle on the four areas of focus the book explores.</p>
+
+<ol>
+  <li>Ball tracking</li>
+  <li>Player tracking</li>
+  <li>Determining what sport is being played</li>
+  <li>What is happening within a game</li>
+</ol>
 
 <p>The whole book is astounding, but as soon as I saw this image I knew what I was going to build.</p>
 
@@ -242,7 +229,7 @@ When the intersection is outside both curves (like in the long top right example
 
 <p>I was surprised by how true the ball travels to 2nd order (constant acceleration) polynomial curves. In the top-right section of the output there are long yellow extensions. My blue curves end 275px and 75px from the predicted intersection and the error, which I measured by hand from the actual frame of contact, was 20px. For such a long distance I am happy with that margin of error. With better tuning to my <code class="highlighter-rouge">scoopItUp</code> code I’m sure that error would come down.</p>
 
-<p>**It’s far from perfect **
+<p><strong>It’s far from perfect</strong>
 My program works fairly well, but by taking a close look at a second clip I’ll can show some areas that desperately need improvement.</p>
 
 <p><img src="http://i.giphy.com/3o6Zt2HBg6ECJP0dvW.gif" alt="Second Clip Highlighted" /></p>
@@ -293,7 +280,7 @@ My program works fairly well, but by taking a close look at a second clip I’ll
 
 <p><strong>Player tracking</strong></p>
 
-<p>After tracking the ball, tracking players feels like the next natural step. Two undergrads at the University of Pennsylvania put together <a href="https://www.cis.upenn.edu/current-students/undergraduate/courses/documents/HonorspaperforEAS499_Wu_Judd.pdf">a program</a> which does just that with a single camera above the court. Like my 2D ball tracking, that technology is interesting, but by itself mostly useless.</p>
+<p>After tracking the ball, tracking players feels like the next natural step. There are already a number of programs which accomplish this. In 2001, Pers et al. created a <a href="https://www.researchgate.net/profile/Stanislav_Kovacic/publication/3905802_A_low-cost_real-time_tracker_of_live_sport_events/links/0c960533ac2da56f04000000.pdf">A Low-Cost Real-Time Tracker of Live Sport Events</a> and more recently, two undergrads at the University of Pennsylvania put together <a href="https://www.cis.upenn.edu/current-students/undergraduate/courses/documents/HonorspaperforEAS499_Wu_Judd.pdf">a program</a> which does just that with a single camera above the court. Like my 2D ball tracking, that technology is interesting, but by itself mostly useless.</p>
 
 <p><strong>Stereo vision</strong></p>
 
@@ -344,8 +331,8 @@ My program works fairly well, but by taking a close look at a second clip I’ll
     <h2 class="footer-heading small-site-title">Things I made, or things I wish I made.</h2>
 
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list footer-content">
+      <div class="footer-col footer-col-1" style="font-size:10px;">
+        <ul  class="contact-list footer-content"> 
           <li>Powered By <a href="http://github.com/hemangsk/Gravity">Gravity</a></li>
           <li>Made with <i class="fa fa-heart"></i> on <a href="http://jekyllrb.com"><span style="color:black">{ { Jekyll } }</a></span></li>
 
@@ -365,7 +352,7 @@ My program works fairly well, but by taking a close look at a second clip I’ll
 
           
           <li>
-            <span class="icon icon--email"><?xml version="1.0" ?><svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#929292" id="icon-6-mail-envelope-closed"><path d="M5.31500722,9.27391933 C5.12106043,9.45739405 5,9.71770487 5,10.0068455 L5,21.9931545 C5,22.2828882 5.11915965,22.5440384 5.31310687,22.7277332 L5.31310687,22.7277332 L13.05,16 L5.31500722,9.27391933 L5.31500722,9.27391933 L5.31500722,9.27391933 Z M27.6868931,9.27226685 C27.8808404,9.45596162 28,9.71711185 28,10.0068455 L28,21.9931545 C28,22.2822951 27.8789396,22.542606 27.6849928,22.7260807 L19.95,16 L27.6868931,9.27226685 L27.6868931,9.27226685 Z M19.2018297,16.6505829 L26.5,23 L6.5,23 L13.7981703,16.6505829 L16.5,19 L19.2018297,16.6505829 L19.2018297,16.6505829 Z M6.00359486,8 C4.89703997,8 4,8.89451376 4,9.99406028 L4,22.0059397 C4,23.1072288 4.88976324,24 6.00359486,24 L26.9964051,24 C28.10296,24 29,23.1054862 29,22.0059397 L29,9.99406028 C29,8.8927712 28.1102368,8 26.9964051,8 L6.00359486,8 L6.00359486,8 Z M16.5,17.7000122 L26.5,9 L6.5,9 L16.5,17.7000122 L16.5,17.7000122 Z" id="mail-envelope-closed"/></g></g></svg></span><span class="address"> felday@brandeis.univeristy_TLD</span>
+            <span class="icon icon--email"><?xml version="1.0" ?><svg height="32px" version="1.1" viewBox="0 0 32 32" width="32px" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:xlink="http://www.w3.org/1999/xlink"><title/><desc/><defs/><g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" stroke-width="1"><g fill="#929292" id="icon-6-mail-envelope-closed"><path d="M5.31500722,9.27391933 C5.12106043,9.45739405 5,9.71770487 5,10.0068455 L5,21.9931545 C5,22.2828882 5.11915965,22.5440384 5.31310687,22.7277332 L5.31310687,22.7277332 L13.05,16 L5.31500722,9.27391933 L5.31500722,9.27391933 L5.31500722,9.27391933 Z M27.6868931,9.27226685 C27.8808404,9.45596162 28,9.71711185 28,10.0068455 L28,21.9931545 C28,22.2822951 27.8789396,22.542606 27.6849928,22.7260807 L19.95,16 L27.6868931,9.27226685 L27.6868931,9.27226685 Z M19.2018297,16.6505829 L26.5,23 L6.5,23 L13.7981703,16.6505829 L16.5,19 L19.2018297,16.6505829 L19.2018297,16.6505829 Z M6.00359486,8 C4.89703997,8 4,8.89451376 4,9.99406028 L4,22.0059397 C4,23.1072288 4.88976324,24 6.00359486,24 L26.9964051,24 C28.10296,24 29,23.1054862 29,22.0059397 L29,9.99406028 C29,8.8927712 28.1102368,8 26.9964051,8 L6.00359486,8 L6.00359486,8 Z M16.5,17.7000122 L26.5,9 L6.5,9 L16.5,17.7000122 L16.5,17.7000122 Z" id="mail-envelope-closed"/></g></g></svg></span><span class="address"> felday at brandeis dot edu</span>
 
           </li>
           

@@ -7,7 +7,7 @@
 
 # Site settings
 title: 'Alex Feldman'
-email: ' felday@brandeis.univeristy_TLD'
+email: ' felday at brandeis dot edu'
 description: 'Things I made, or things I wish I made.'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://felday.info" # the base hostname & protocol for your site
