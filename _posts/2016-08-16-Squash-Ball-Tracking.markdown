@@ -41,7 +41,7 @@ What's so captivating about their product is not it's beautiful UX design or per
 
 **Starting to program**
 
-Early in development, I was overflowing with inspiration, but seriously lacked direction. My original goal was still to detect where on the front wall a ball hit, and by the time I had developed decent ball detection in each frame (more on that later), I was painfully aware of how hard it would be to pull that off in 2D. 
+Early in development, I was overflowing with inspiration, but seriously lacked direction. My original goal was still to detect where on the front wall a ball hit, and by the time I had developed decent ball detection in each frame (more on that later), I was painfully aware of how hard it would be to pull that off in 2D.
 
 I had also been messing around extensively in MATLAB. This was my first time working in MATLAB and I was impressed with the documentation available on all built-in functions. My first real taste of computer vision came from reading the help articles on functions with input arguments I couldn't understand. I remember struggling with the [Kalman Filter](http://www.mathworks.com/help/vision/examples/using-kalman-filter-for-object-tracking.html) for a day or two and slowly understanding the difference between detection and tracking.
 
@@ -106,7 +106,7 @@ Look at how much brighter the four frame difference video is, especially around 
 
 Once I had well tuned difference videos the real challenge started. What unique characteristics does a squash ball have that noise or players do not? Through fine tuning of `blobItUp` I was able to isolate objects of the right size, but I was still a long way away from generating paths.
 
-My tuning process was simple trial and error. I would change the size of my morphological dilation brush and minimum and maximum blob size. If no detections were found in a frame where there should be, I would redo the dilation with a larger brush. If too many detections were found, I would use 'noPeople' and the second difference video to figure out which detections could be ignored.
+My tuning process was simple trial and error. I would change the size of my morphological dilation brush and minimum and maximum blob size. If no detections were found in a frame where there should be, I would redo the dilation with a larger brush. If too many detections were found, I would use `noPeople` and the second difference video to figure out which detections could be ignored.
 
 At that point my detections were reliable and I was ready to solve my original problem - finding where on the front wall the ball made contact. A simple solution to this problem is possible with my two dimensional setup. When the ball changes direction and speed in a pixel on top of the front wall I could locate that point in the 2D space of the front wall. There are many problems with this setup and to do it right, I would need at least 2 cameras. In any case, without a setup to track the ball, only to detect it, my task was not feasible.
 
@@ -121,7 +121,7 @@ The 2D ball tracking chapter of *CV in Sports* described a three part process ca
 
 Layered Data Association(as described in *CV in Sports*) begins with a clip of a whole game of tennis with detections in each frame and outputs all of the paths from all of the rallies in the game. Each of the three levels works at a different level of abstraction as follows:
 
-**Candidate Level** 
+**Candidate Level**
 
 `generatePoints`, `generateTracklets`, `improveTracklets`
 
@@ -141,13 +141,13 @@ If the models were not similar I extended temporally adjacent curves to their in
 
 **Path Level**
 
-Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies. 
+Shortest paths are found between all tracklets, not just adjacent ones. This shows which tracklets are connected (in a single rally) and which are distinct. It abstracts a third time and builds an entire game from a collection of rallies.
 
 I didn't implement Path Level Association but I certainly intend to in the future. I hope to write more about it then.
 
 **Endpoint/Midpoint Curves vs MATLAB fitObjects**
 
-*CV in Sports* was my guide for implementing Layered Data Association and it steered me in the right direction time and time again. The one decision where I really took a different route than the book is how I created my models. 
+*CV in Sports* was my guide for implementing Layered Data Association and it steered me in the right direction time and time again. The one decision where I really took a different route than the book is how I created my models.
 
 The book writes out the basics physics equations deriving acceleration, velocity, and position that I learned in high school.
 
@@ -155,7 +155,7 @@ The book writes out the basics physics equations deriving acceleration, velocity
 
 *Equations from CV in Sports. **p** is position, **v** is velocity, **a** is acceleration, **k** is frame.*
 
-I had coded my curves using each tracklets' first and last supports and by choosing a middle support between the two. These equations work alright when there are a small number of points, but because they ignore all internal supports they are a bad choice for modeling long paths. If the ball path and all detections were perfectly regular a function based on three points would work, but with even a small amount of deviation the models produced are poor. Once I made the switch to using MATLAB's built in `fit()` function my results improved dramatically. 
+I had coded my curves using each tracklets' first and last supports and by choosing a middle support between the two. These equations work alright when there are a small number of points, but because they ignore all internal supports they are a bad choice for modeling long paths. If the ball path and all detections were perfectly regular a function based on three points would work, but with even a small amount of deviation the models produced are poor. Once I made the switch to using MATLAB's built in `fit()` function my results improved dramatically.
 
 The only downside was that whereas I had been storing values in [xValue, yValue] arrays, I needed two fit objects stored in a struct for my tracklet models. One function mapped time to X position and the other mapped time to Y position. Position was dependent and frame number was independent.
 
@@ -175,9 +175,9 @@ Red dots are detections which had supports on either side. I formed tracklets wi
 
 **Blue curves**
 Blue curves show tracklets which had more than 4 supports. `improveTracklets` takes each tracklet with supports and scoops up nearby detections which are within a threshold of where the tracklets model predicts. It adds these points to its own supports while deleting them from their old tracklet. If a tracklet has zero supports it is considered dead. In this way, longer tracklets grow and form single functions along a path.
- 
+
 **Yellow curves**
-Yellow curves are extensions of a tracklet's model to the intersection with the neighboring tracklet. This is especially important because the racquet head will always occlude the ball when contact is made. 
+Yellow curves are extensions of a tracklet's model to the intersection with the neighboring tracklet. This is especially important because the racquet head will always occlude the ball when contact is made.
 When the intersection is outside both curves (like in the long top right example) both curves are drawn. When the intersection is within one curve (bottom left) only the extension from one curve is drawn. In this case the curves don't line up because the ball traveled across the player's body and was occluded from view.
 
 I was surprised by how true the ball travels to 2nd order (constant acceleration) polynomial curves. In the top-right section of the output there are long yellow extensions. My blue curves end 275px and 75px from the predicted intersection and the error, which I measured by hand from the actual frame of contact, was 20px. For such a long distance I am happy with that margin of error. With better tuning to my `scoopItUp` code I'm sure that error would come down.
@@ -210,7 +210,7 @@ Other thoughts
 
 I've done most of my serious programming in Java so once I had a clear idea of what I needed, I transitioned straight into an Object-Oriented design. MATLAB seriously disappoints in its OOP practicality, and if I was doing this again I would certainly keep everything procedural. In essence I did make all my methods procedural by passing index values to my class methods and returning my modified elements from those methods. Passing by reference is not simple in MATLAB.
 
-The only real difference between my implementation and a purely procedural one is that MATLAB displays the values of 1 dimensional structs when inspecting variables, but does not display class attributes. Passing values was a small nuisance, but the poor debugger design frustrated me to no end. 
+The only real difference between my implementation and a purely procedural one is that MATLAB displays the values of 1 dimensional structs when inspecting variables, but does not display class attributes. Passing values was a small nuisance, but the poor debugger design frustrated me to no end.
 
 **Why squash is different**
 
@@ -239,7 +239,7 @@ After tracking the ball, tracking players feels like the next natural step. Ther
 
 I literally dream of stereo tracking. I think about how adding a second camera to my setup would solve my biggest problems and pave the way to new and useful functionality. All of the big innovations which I want to see for squash tracking need 3D.
 
-Drawing the path of a squash ball is nice, but is hardly useful in any practical way. By introducing stereo footage, video I could make a 3D hull rendering of the squash court. I would know where on each wall the ball bounced and the speed of the ball at each frame. Adding a second camera would also help with the regular occlusions that a single camera has trouble with. 
+Drawing the path of a squash ball is nice, but is hardly useful in any practical way. By introducing stereo footage, video I could make a 3D hull rendering of the squash court. I would know where on each wall the ball bounced and the speed of the ball at each frame. Adding a second camera would also help with the regular occlusions that a single camera has trouble with.
 
 **Use color (or maybe not)**
 
@@ -249,7 +249,7 @@ My program totally ignores color and immediately converts videos to grayscale. I
 
 This was my first time using a GoPro and I was shocked with the ease of use and quality of video produced. I clipped a tiny box to the back wall and it recorded in HD at 120fps. In previous setups I had been hanging tripods off of railings and attaching cameras with large lenses to them. Even then, the field of view and frame rate didn't compare with the GoPro's.
 
-The GoPro's wide angle shot did cause problems for my ball detection and curve fitting. In my main test clip most of the action took place in the front of the court and when I tested rallies that were played further back they were much less smooth. This is partially because the ball changes size dramatically between the front and back of the court. Changes in position are also more extreme when closer to the camera and that causes the ball path to deviate from perfect 2nd order polynomials. Using a camera position similar to broadcast would help my program perform. 
+The GoPro's wide angle shot did cause problems for my ball detection and curve fitting. In my main test clip most of the action took place in the front of the court and when I tested rallies that were played further back they were much less smooth. This is partially because the ball changes size dramatically between the front and back of the court. Changes in position are also more extreme when closer to the camera and that causes the ball path to deviate from perfect 2nd order polynomials. Using a camera position similar to broadcast would help my program perform.
 
 ![zoomed camera](http://i.giphy.com/l2Sqi70EikLX7kt1u.gif)
 
