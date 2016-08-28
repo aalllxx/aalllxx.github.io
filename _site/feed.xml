@@ -5,9 +5,71 @@
     <description>Things I made, or things I wish I made.</description>
     <link>http://felday.info/</link>
     <atom:link href="http://felday.info/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 23 Aug 2016 12:28:07 -0400</pubDate>
-    <lastBuildDate>Tue, 23 Aug 2016 12:28:07 -0400</lastBuildDate>
+    <pubDate>Sat, 27 Aug 2016 20:54:44 -0400</pubDate>
+    <lastBuildDate>Sat, 27 Aug 2016 20:54:44 -0400</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Computer Vision Course: Udacity with Aaron Bobick</title>
+        <description>&lt;p&gt;This summer I learned a lot about computer vision from Aaron Bobick through his Udacity Course on the topic. He is a captivating teacher, even over video, and I want to highlight one of the most important lessons I picked up from the series.&lt;/p&gt;
+
+&lt;p&gt;I didn’t code all the problems sets and I didn’t understand everything about Fourier transforms, but I internalized a broad lesson that serves me well.&lt;/p&gt;
+
+&lt;p&gt;Take a look at &lt;a href=&quot;https://www.youtube.com/watch?v=8kiz9mgi1So&quot;&gt;this video&lt;/a&gt; from the course in which Bobick shows an optical illusion which I’ve seen a half dozen times. A block casts its shadow over a grid of white and gray tiles. It turns out that the white tile in shadow has the same color intensity as the gray tile on the side.&lt;/p&gt;
+
+&lt;p&gt;I have always liked tricks like this and &lt;a href=&quot;http://giphy.com/gifs/3d-op-art-optical-illusion-3o7ZenrvPHmZEQLVkY&quot;&gt;gifs&lt;/a&gt; make for some of the illusions out there. Bobick’s video isn’t exceptional because he pulls a neat trick, but because he explains what is difficult in computer vision. It is so clear to the eye that that block is casting a shadow, but CV can’t make assumptions like that. A robust CV system must infer very complex ideas in order to understand even the most simple situations.&lt;/p&gt;
+
+&lt;p&gt;Thinking about the unique elements in an image and what clues a computer could employ to understand an image - that is what I love about CV. That is what I love about Bobick’s course.&lt;/p&gt;
+
+&lt;div id=&quot;_giphy_tv&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+    var _giphy_tv_tag=&quot;optical-illusion&quot;;
+    var g = document.createElement(&#39;script&#39;); g.type = &#39;text/javascript&#39;; g.async = true;
+    g.src = (&#39;https:&#39; == document.location.protocol ? &#39;https://&#39; : &#39;http://&#39;) + &#39;giphy.com/static/js/widgets/tv.js&#39;;
+    var s = document.getElementsByTagName(&#39;script&#39;)[0]; s.parentNode.insertBefore(g, s);
+&lt;/script&gt;
+
+</description>
+        <pubDate>Sat, 27 Aug 2016 00:00:00 -0400</pubDate>
+        <link>http://felday.info/blog/2016/08/27/CV-Course.html</link>
+        <guid isPermaLink="true">http://felday.info/blog/2016/08/27/CV-Course.html</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Crossword Puzzles</title>
+        <description>&lt;p&gt;I’m terrible at crossword puzzles but maybe machine learning can save me. Every week my mother finishes the New York Times Magazine crossword and I’ve taken a few cracks at it myself. I love a good KenKen and nothing beats a Sudoku for airplane rides, but I can never seem to get the references that Will Shortz throws my way.&lt;/p&gt;
+
+&lt;p&gt;There are plenty of &lt;a href=&quot;http://www.crosswordsolver.org/&quot;&gt;Crossword Solvers&lt;/a&gt; which can do searches from a dictionary file for words with known length and some letters, but I’m picturing something that does it all. With a big training set and great NLP it should be easy enough to implement. Watson did it with Jeopardy and crossword answers are much more structured than is that game. I don’t have the time now to build it myself but I’d love to see a program which can solve the Saturday NY Times crossword.&lt;/p&gt;
+
+&lt;p&gt;IBM and other big companies are pushing the limits of NLP very quickly and this may be the perfect time to use that research to get some garden-variety tools.&lt;/p&gt;
+
+&lt;p&gt;My program would have two components.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;For each word in the puzzle create a list of restrictions (word length and letter placement) on a dictionary file&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use machine learning and word restrictions to generate possibilities. If above a threshold, accept the word&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These would loop (or maybe coroutine) until I had a complete puzzle. With those at it’s core, I’m fairly sure this design would do well.&lt;/p&gt;
+
+&lt;p&gt;If this already exists or if I oversimplified the process, shoot me an email! felday &lt;em&gt;at&lt;/em&gt; brandeis &lt;em&gt;dot&lt;/em&gt; edu.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 23 Aug 2016 00:00:00 -0400</pubDate>
+        <link>http://felday.info/blog/2016/08/23/Crossword-Solver.html</link>
+        <guid isPermaLink="true">http://felday.info/blog/2016/08/23/Crossword-Solver.html</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Ball Tracking for Squash</title>
@@ -108,7 +170,7 @@
 
 &lt;p&gt;Once I had well tuned difference videos the real challenge started. What unique characteristics does a squash ball have that noise or players do not? Through fine tuning of &lt;code class=&quot;highlighter-rouge&quot;&gt;blobItUp&lt;/code&gt; I was able to isolate objects of the right size, but I was still a long way away from generating paths.&lt;/p&gt;
 
-&lt;p&gt;My tuning process was simple trial and error. I would change the size of my morphological dilation brush and minimum and maximum blob size. If no detections were found in a frame where there should be, I would redo the dilation with a larger brush. If too many detections were found, I would use ‘noPeople’ and the second difference video to figure out which detections could be ignored.&lt;/p&gt;
+&lt;p&gt;My tuning process was simple trial and error. I would change the size of my morphological dilation brush and minimum and maximum blob size. If no detections were found in a frame where there should be, I would redo the dilation with a larger brush. If too many detections were found, I would use &lt;code class=&quot;highlighter-rouge&quot;&gt;noPeople&lt;/code&gt; and the second difference video to figure out which detections could be ignored.&lt;/p&gt;
 
 &lt;p&gt;At that point my detections were reliable and I was ready to solve my original problem - finding where on the front wall the ball made contact. A simple solution to this problem is possible with my two dimensional setup. When the ball changes direction and speed in a pixel on top of the front wall I could locate that point in the 2D space of the front wall. There are many problems with this setup and to do it right, I would need at least 2 cameras. In any case, without a setup to track the ball, only to detect it, my task was not feasible.&lt;/p&gt;
 
@@ -177,7 +239,7 @@ Red dots are detections which had supports on either side. I formed tracklets wi
 Blue curves show tracklets which had more than 4 supports. &lt;code class=&quot;highlighter-rouge&quot;&gt;improveTracklets&lt;/code&gt; takes each tracklet with supports and scoops up nearby detections which are within a threshold of where the tracklets model predicts. It adds these points to its own supports while deleting them from their old tracklet. If a tracklet has zero supports it is considered dead. In this way, longer tracklets grow and form single functions along a path.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Yellow curves&lt;/strong&gt;
-Yellow curves are extensions of a tracklet’s model to the intersection with the neighboring tracklet. This is especially important because the racquet head will always occlude the ball when contact is made. 
+Yellow curves are extensions of a tracklet’s model to the intersection with the neighboring tracklet. This is especially important because the racquet head will always occlude the ball when contact is made.
 When the intersection is outside both curves (like in the long top right example) both curves are drawn. When the intersection is within one curve (bottom left) only the extension from one curve is drawn. In this case the curves don’t line up because the ball traveled across the player’s body and was occluded from view.&lt;/p&gt;
 
 &lt;p&gt;I was surprised by how true the ball travels to 2nd order (constant acceleration) polynomial curves. In the top-right section of the output there are long yellow extensions. My blue curves end 275px and 75px from the predicted intersection and the error, which I measured by hand from the actual frame of contact, was 20px. For such a long distance I am happy with that margin of error. With better tuning to my &lt;code class=&quot;highlighter-rouge&quot;&gt;scoopItUp&lt;/code&gt; code I’m sure that error would come down.&lt;/p&gt;
@@ -317,21 +379,6 @@ My program works fairly well, but by taking a close look at a second clip I’ll
         <pubDate>Tue, 16 Aug 2016 00:00:00 -0400</pubDate>
         <link>http://felday.info/blog/2016/08/16/Reinforced-Dirt.html</link>
         <guid isPermaLink="true">http://felday.info/blog/2016/08/16/Reinforced-Dirt.html</guid>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>MIT Interactive Dynamic Video</title>
-        <description>&lt;p&gt;This project uses video of near-stationary objects and uses the small vibrations in the objects to learn about how they move. It’s very cool.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=4f09VdXex3A&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/4f09VdXex3A/0.jpg&quot; alt=&quot;MIT Interactive Dynamic Vid&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 16 Aug 2016 00:00:00 -0400</pubDate>
-        <link>http://felday.info/blog/2016/08/16/MIT-Interactive-Dynamic-Video.html</link>
-        <guid isPermaLink="true">http://felday.info/blog/2016/08/16/MIT-Interactive-Dynamic-Video.html</guid>
         
         
         <category>blog</category>

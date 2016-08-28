@@ -11,7 +11,9 @@ There are plenty of [Crossword Solvers](http://www.crosswordsolver.org/) which c
 IBM and other big companies are pushing the limits of NLP very quickly and this may be the perfect time to use that research to get some garden-variety tools.
 
 My program would have two components.
+
 1. For each word in the puzzle create a list of restrictions (word length and letter placement) on a dictionary file
+
 2. Use machine learning and word restrictions to generate possibilities. If above a threshold, accept the word
 
 These would loop (or maybe coroutine) until I had a complete puzzle. With those at it's core, I'm fairly sure this design would do well.
