@@ -1,7 +1,18 @@
+---
+layout: post
+title:  "Exam Coversheet Reader"
+date:   2017-07-27 16:00:00 -0400
+categories: "projects"
+---
+
+A Python/openCV computer vision project
+
+[GitHub repository](https://github.com/aalllxx/Exam_Coversheet_Reader)
+
 # Exam Coversheet Reader
 -----------
 ## Description
-To save time when grading a large class, entering grades on paper and scanning them into a database can save time. This code does that using bubbles which can be filled in. It is written in python and openCV.
+To save time when grading a large class, entering grades on paper and scanning them into a database can save time. This code does that using bubbles which can be filled in. 
 
 Sample coversheet:
 
