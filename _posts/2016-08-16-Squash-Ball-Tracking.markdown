@@ -102,7 +102,7 @@ My solution to this problem is horribly inefficient and it pains me to think abo
 
 Look at how much brighter the four frame difference video is, especially around the players. The biggest problem I had with detection was that racquets or limbs would often separate from the large *person* blob and get detected as a possible ball. By subtracting at a further difference, I was able to more clearly figure out where the whole player was and exclude that when searching for the ball.
 
-`noPeople` was very hard to optimize properly, and `blobItUp` only uses it in noisy frames with more than 2 detections, but in the noisiest sections it works wonders at cleaning up a frame. At the end of the day, though, I hope that in future versions I'll do away with the two difference videos.
+`noPeople` was very hard to optimize properly, and `blobItUp` only uses it in noisy frames with more than 2 detections, but in the noisiest sections it works wonders at cleaning up a frame. At the end of the day though, I hope that in future versions I'll do away with the two difference videos.
 
 Once I had well tuned difference videos the real challenge started. What unique characteristics does a squash ball have that noise or players do not? Through fine tuning of `blobItUp` I was able to isolate objects of the right size, but I was still a long way away from generating paths.
 
@@ -155,7 +155,7 @@ The book writes out the basics physics equations deriving acceleration, velocity
 
 *Equations from CV in Sports. **p** is position, **v** is velocity, **a** is acceleration, **k** is frame.*
 
-I had coded my curves using each tracklets' first and last supports and by choosing a middle support between the two. These equations work alright when there are a small number of points, but because they ignore all internal supports they are a bad choice for modeling long paths. If the ball path and all detections were perfectly regular a function based on three points would work, but with even a small amount of deviation the models produced are poor. Once I made the switch to using MATLAB's built in `fit()` function my results improved dramatically.
+I had coded my curves using each tracklet's first and last supports and by choosing a middle support between the two. These equations work alright when there are a small number of points, but because they ignore all internal supports they are a bad choice for modeling long paths. If the ball path and all detections were perfectly regular a function based on three points would work, but with even a small amount of deviation the models produced are poor. Once I made the switch to using MATLAB's built in `fit()` function my results improved dramatically.
 
 The only downside was that whereas I had been storing values in [xValue, yValue] arrays, I needed two fit objects stored in a struct for my tracklet models. One function mapped time to X position and the other mapped time to Y position. Position was dependent and frame number was independent.
 

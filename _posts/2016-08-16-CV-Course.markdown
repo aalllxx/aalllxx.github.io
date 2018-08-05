@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Computer Vision Course: Udacity with Aaron Bobick"
+categories: "blog"
+---
+
+This summer I learned a lot about computer vision from Aaron Bobick through his Udacity Course on the topic. He is a captivating teacher even over video and I want to highlight one of the most important lessons I picked up from the series. I didn't code all the problems sets and I don't understand everything about Fourier transforms, but I internalized a broad lesson that serves me well.
+
+Take a look at [this video](https://www.youtube.com/watch?v=8kiz9mgi1So) from the course in which Bobick shows an optical illusion which I've seen a half dozen times. A block casts its shadow over a grid of white and gray tiles. It turns out that the white tile in shadow has the same color intensity as the gray tile on the side.
+
+I have always liked tricks like this and [gifs](http://giphy.com/gifs/3d-op-art-optical-illusion-3o7ZenrvPHmZEQLVkY) make for some of the illusions out there. Bobick's video isn't exceptional because he pulls a neat trick, but because he explains what is difficult in computer vision. It is so clear to the eye that that block is casting a shadow, but CV can't make assumptions like that. A robust CV system must infer very complex ideas in order to understand even the most simple situations.
+
+Thinking about the unique elements in an image and what clues a computer could employ to understand an image - that is what I love about CV. That is what I love about Bobick's course.
+
+
+Check out some gifs!
+
+<div id="_giphy_tv"></div>
+<script>
+    var _giphy_tv_tag="optical-illusion";
+    var g = document.createElement('script'); g.type = 'text/javascript'; g.async = true;
+    g.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'giphy.com/static/js/widgets/tv.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(g, s);
+</script>
