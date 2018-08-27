@@ -9,6 +9,6 @@ I'm an undergraduate at Brandeis University studying Computer Science, Gender St
 
 This blog is where I share what I think is cool and what I'm working on.
 
-Please reach out over email: **felday *at* brandeis *dot* edu**
+Please reach out over email: **feldmanay *at* gmail *dot* com**
 
 ![Headshot](http://i.imgur.com/ZYxldU4.jpg)
